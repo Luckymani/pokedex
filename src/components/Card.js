@@ -5,7 +5,6 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 function Card(props) {
 	let { pokemonData } = props;
 	const [liked, setLiked] = useState(false);
-	const [count, setcount] = useState(0);
 
 	const checkIfLiked = () => {
 		const string = localStorage.getItem("favArray");

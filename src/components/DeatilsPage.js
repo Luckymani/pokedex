@@ -38,7 +38,7 @@ function DeatilsPage() {
 	}, []);
 	console.log(pokemonData);
 	return (
-		<section className="container">
+		<section className="deatils-container">
 			{pokemonData && (
 				<div className="wrapper">
 					<div className="image">
@@ -73,14 +73,14 @@ function DeatilsPage() {
 							))}
 						</div>
 					</div>
-					<div className="weakness">
+					{/* <div className="weakness">
 						<p>weakness</p>
 						<div>
 							{pokemonData.abilities.map((value, index) => (
 								<span key={index}>{value}</span>
 							))}
 						</div>
-					</div>
+					</div> */}
 
 					<div className="stats">
 						<div>

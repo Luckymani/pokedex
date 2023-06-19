@@ -47,6 +47,7 @@ function SearchPage(props) {
 			setPokemonData(emphtyObj);
 		} catch (error) {
 			console.log(error.message);
+			window.alert("invalid search");
 		}
 	};
 

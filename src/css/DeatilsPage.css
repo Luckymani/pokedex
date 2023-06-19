@@ -1,8 +1,11 @@
-.container {
+.deatils-container {
 	box-sizing: border-box;
 	height: auto;
 	overflow: hidden;
-	padding: 110px 4%;
+	padding: 110px 4% !important;
+	z-index: 20;
+	position: relative;
+	/* margin-top: 220px; */
 }
 .wrapper {
 	width: clamp(300px, 85vw, 900px);

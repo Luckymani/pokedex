@@ -12,29 +12,35 @@ function ListPage() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		async function fetchData() {
-			const list = await axios.get(`https://pokeapi.co/api/v2/pokemon-species?offset=${fetch * 10}&limit=10`);
+		try {
+			async function fetchData() {
+				if (fetch > 100) return;
+				const list = await axios.get(`https://pokeapi.co/api/v2/pokemon-species?offset=${fetch * 10}&limit=10`);
 
-			for (let i = 0; i < list.data.results.length; i++) {
-				// console.log("hello");
-				const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${list.data.results[i].name}`);
-				const species = await axios.get(response.data.species.url);
+				for (let i = 0; i < list.data.results.length; i++) {
+					// console.log("hello");
+					const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${list.data.results[i].name}`);
+					const species = await axios.get(response.data.species.url);
 
-				// console.log(response);
-				const emphtyObj = {};
-				emphtyObj.name = response.data.name;
-				emphtyObj.id = response.data.id;
-				emphtyObj.color = species.data.color.name;
-				emphtyObj.image = response.data.sprites.other.dream_world.front_default;
-				emphtyObj.abilities = response.data.abilities.map((val) => val.ability.name);
-				emphtyObj.stats = response.data.stats.map((val) => {
-					return { stat: val.base_stat, stateName: val.stat.name };
-				});
-				emphtyObj.shape = species.data.shape.name;
-				setPokemonList((prev) => [...prev, emphtyObj]);
+					// console.log(response);
+					const emphtyObj = {};
+					emphtyObj.name = response.data.name;
+					emphtyObj.id = response.data.id;
+					emphtyObj.color = species.data.color.name;
+					emphtyObj.image = response.data.sprites.other.dream_world.front_default;
+					emphtyObj.abilities = response.data.abilities.map((val) => val.ability.name);
+					emphtyObj.stats = response.data.stats.map((val) => {
+						return { stat: val.base_stat, stateName: val.stat.name };
+					});
+					emphtyObj.shape = species.data.shape.name;
+					setPokemonList((prev) => [...prev, emphtyObj]);
+				}
 			}
+			fetchData();
+		} catch (err) {
+			console.log(err.message);
+			window.alert("no more to scroll");
 		}
-		fetchData();
 	}, [fetch]);
 	useEffect(() => {
 		const debouncingFun = function () {

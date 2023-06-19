@@ -10,10 +10,12 @@ function ListPage() {
 	const [pokemonList, setPokemonList] = useState([]);
 	const timeOutRef = useRef(null);
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		try {
 			async function fetchData() {
+				setLoading(true);
 				if (fetch > 100) return;
 				const list = await axios.get(`https://pokeapi.co/api/v2/pokemon-species?offset=${fetch * 10}&limit=10`);
 
@@ -34,6 +36,7 @@ function ListPage() {
 					});
 					emphtyObj.shape = species.data.shape.name;
 					setPokemonList((prev) => [...prev, emphtyObj]);
+					setLoading(false);
 				}
 			}
 			fetchData();
@@ -70,6 +73,7 @@ function ListPage() {
 	};
 	return (
 		<section className="list-page" onClick={handleButtonClick}>
+			{loading && <div className="loading">loading....</div>}
 			{pokemonList.length > 0 &&
 				pokemonList.map((pokemonData, index) => {
 					return <Card key={index} pokemonData={pokemonData}></Card>;

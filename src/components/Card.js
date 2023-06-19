@@ -80,22 +80,24 @@ function Card(props) {
 					</div>
 					<button id={pokemonData.id}>know more</button>
 				</div>
-				<div className="icons">
-					{liked ? (
-						<AiFillHeart
-							className="icon"
-							onClick={() => {
-								removeFromFav(pokemonData.name);
-							}}
-						/>
-					) : (
-						<AiOutlineHeart
-							className="icon"
-							onClick={() => {
-								addToFav(pokemonData.name);
-							}}></AiOutlineHeart>
-					)}
-				</div>
+
+				{liked ? (
+					<div
+						className="icons"
+						onClick={() => {
+							removeFromFav(pokemonData.name);
+						}}>
+						<AiFillHeart className="icon" />
+					</div>
+				) : (
+					<div
+						className="icons"
+						onClick={() => {
+							addToFav(pokemonData.name);
+						}}>
+						<AiOutlineHeart className="icon"></AiOutlineHeart>
+					</div>
+				)}
 			</div>
 		</div>
 	);

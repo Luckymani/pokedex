@@ -1,0 +1,9 @@
+.list-page {
+	display: grid;
+	margin-top: 90px;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	grid-gap: 15px !important;
+	padding: 0px 4% !important;
+	overflow-y: scroll;
+	position: relative;
+}
